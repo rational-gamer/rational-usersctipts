@@ -6,3 +6,4 @@ Userscripts repository to make web more accessible
 | Name                     | Description                                                      |
 |--------------------------|------------------------------------------------------------------|
 | [tts-prepare](tts-prepare.md)                     | Prepares web content for text-to-speech, improving accessibility.   |
+| [scroll-marker](scroll-marker.md)                 | Adds visual scroll markers to help track reading position.          |
