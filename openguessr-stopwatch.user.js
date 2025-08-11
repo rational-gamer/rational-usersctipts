@@ -7,7 +7,7 @@
 // @author      rational-gamer
 // @description 19/07/2025 13:15:34
 // @run-at      document-idle
-// @downloadURL https://github.com/rational-gamer/3rd-maths/releases/latest/download/openguessr-stopwatch.user.js
+// @downloadURL https://github.com/rational-gamer/rational-usersctipts/raw/refs/heads/main/openguessr-stopwatch.user.js
 // ==/UserScript==
 
 console.debug('⌚OpenGuessr Stopwatch Script Loaded');
