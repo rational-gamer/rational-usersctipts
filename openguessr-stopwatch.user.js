@@ -3,7 +3,7 @@
 // @namespace   3rd maths
 // @match       https://openguessr.com/
 // @grant       none
-// @version     0.1.2
+// @version     0.1.3
 // @author      rational-gamer
 // @description 19/07/2025 13:15:34
 // @run-at      document-idle
@@ -78,15 +78,15 @@ waitForElement('#mapHolder').then(mh => {
   // create a style element to hold the CSS
   const style = document.createElement('style');
   style.textContent = `
-    #confirmButton #guessText {
-      font-family: monospace;
-    }
+    #confirmButton #guessText,
     #nextRound .nextRoundText strong {
       font-family: monospace;
     }
   `;
   // append the style element to the head
   document.head.appendChild(style);
+
+  
 });
 
 waitForElement("#confirmButton .helpButton").then(hb => hb.textContent = '⌚');
@@ -128,6 +128,6 @@ waitForElement(".logoLeft > .image").then(logo => {
   .replace(/\n\s*/g, '');
 
   logo.setAttribute('alt', 'palestine');
-  logo.setAttribute('src', 'data:image/svg+xml;'+encodeURIComponent(data));
+  logo.setAttribute('src', 'data:image/svg+xml;utf-8,'+encodeURIComponent(data));
   logo.setAttribute('style', 'height: 56px; padding-top: 15px;');
 });
