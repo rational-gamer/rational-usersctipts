@@ -3,7 +3,7 @@
 // @namespace   3rd maths
 // @match       https://openguessr.com/
 // @grant       none
-// @version     0.1.1
+// @version     0.1.2
 // @author      rational-gamer
 // @description 19/07/2025 13:15:34
 // @run-at      document-idle
@@ -106,4 +106,28 @@ waitForElement("#confirmButton #guessText").then(gt => {
       });
     });
   });
+});
+
+waitForElement(".logoLeft > .image").then(logo => {
+  console.debug(' 🇵🇸 custom logo');
+
+  const data = `
+    <svg xmlns="http://www.w3.org/2000/svg">
+
+      <svg x="0" y="0" viewBox="0 0 1 3" preserveAspectRatio="none">
+        <rect fill="#000000" x="0" y="0" width="1" height="3"/>
+        <rect fill="#FFFFFF" x="0" y="1" width="1" height="3"/>
+        <rect fill="#009639" x="0" y="2" width="1" height="3"/>
+      </svg>
+
+      <svg x="0" y="0" viewBox="0 0 4 6" preserveAspectRatio="xMinYMid meet">
+        <path fill="#ED2E38" d="M0 0 L4 3 L0 6 Z"/>
+      </svg>
+
+    </svg>`
+  .replace(/\n\s*/g, '');
+
+  logo.setAttribute('alt', 'palestine');
+  logo.setAttribute('src', 'data:image/svg+xml;'+encodeURIComponent(data));
+  logo.setAttribute('style', 'height: 56px; padding-top: 15px;');
 });
