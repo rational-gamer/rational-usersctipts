@@ -82,11 +82,25 @@ waitForElement('#mapHolder').then(mh => {
     #nextRound .nextRoundText strong {
       font-family: monospace;
     }
+    #flagMask {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #mapHolder:hover #flagMask {
+      visibility: hidden;
+    }
   `;
   // append the style element to the head
   document.head.appendChild(style);
 
-  
+  const mask = document.createElement('img');
+  mask.setAttribute('id', 'flagMask');
+  mask.setAttribute('alt', 'free palestine');
+  mask.setAttribute('src', 'data:image/');
 });
 
 waitForElement("#confirmButton .helpButton").then(hb => hb.textContent = '⌚');
