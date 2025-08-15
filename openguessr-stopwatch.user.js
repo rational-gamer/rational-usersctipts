@@ -3,7 +3,7 @@
 // @namespace   3rd maths
 // @match       https://openguessr.com/
 // @grant       none
-// @version     0.1.4
+// @version     0.1.5
 // @author      rational-gamer
 // @description 19/07/2025 13:15:34
 // @run-at      document-idle
