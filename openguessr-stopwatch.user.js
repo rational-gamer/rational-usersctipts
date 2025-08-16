@@ -3,7 +3,7 @@
 // @namespace   3rd maths
 // @match       https://openguessr.com/
 // @grant       none
-// @version     0.1.6
+// @version     0.1.7
 // @author      rational-gamer
 // @description 19/07/2025 13:15:34
 // @run-at      document-idle
@@ -109,11 +109,11 @@ const DATA = {
     .mapAttributionDataBox p,
     .mapAttributionLogo::before {
       background: url("${RAW.PALESTINIAN_FLAG_SVG}") center/cover no-repeat;
-      z-index: 999;
+      z-index: 100;
     }
     #mapHolder::before {
-      background: url("${RAW.FREE_PALESTINE_BANNER_WEBP}") center/contain no-repeat;
-      z-index: 998;
+      background: url("${RAW.FREE_PALESTINE_BANNER_WEBP}") center/100% 100% no-repeat;
+      z-index: 10;
       transition: opacity .280s ease-in;
     }
     #mapHolder:hover::before {
