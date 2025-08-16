@@ -4,7 +4,7 @@
 // @match       https://www.google.com/maps/embed/v1/streetview
 // @grant       GM_addStyle
 // @run-at      document-start
-// @version     0.0.1
+// @version     0.0.2
 // @author      rational-gamer
 // @description 16/08/2025 11:31:25
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/panorama-banner.user.js
@@ -30,6 +30,7 @@ const RAW = {
 const DATA = {
 
   PANORAMA_CSS_STYLE: `
+    .gm-style-cc::before,
     div:has(>img[alt='Google'])::before {
       content: '';
       position: absolute;
@@ -38,10 +39,10 @@ const DATA = {
       width: 100%;
       height: 100%;
       opacity: 1.0;
-    }
-    div:has(>img[alt='Google'])::before {
+
       background: url("${RAW.PALESTINIAN_FLAG_SVG}") center/cover no-repeat;
       z-index: 100;
+      color: transparent;
     }
     div:has(>img[alt='Google'])::before {
       height: 22px;
