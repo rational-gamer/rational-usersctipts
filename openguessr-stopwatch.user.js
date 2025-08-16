@@ -2,75 +2,16 @@
 // @name        openguessr-stopwatch
 // @namespace   3rd maths
 // @match       https://openguessr.com/
-// @grant       none
-// @version     0.1.7
+// @grant       GM_addStyle
+// @run-at      document-start
+// @version     0.1.8
 // @author      rational-gamer
 // @description 19/07/2025 13:15:34
-// @run-at      document-idle
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/openguessr-stopwatch.user.js
 // ==/UserScript==
 
-console.debug('⌚OpenGuessr Stopwatch Script Loaded');
+console.log('⌚ userscript openguessr-stopwatch loaded at ' + window.location);
 
-/**
- * custom CSS and BANNER
- */
-waitForElement('#mapHolder').then(mh => {
-
-  console.debug(' 🇵🇸 custom CSS');
-  const style = document.createElement('style');
-  style.textContent = DATA.CUSTOM_CSS_STYLE;
-  document.head.appendChild(style);
-
-});
-
-/**
- * integrating stopwatch
- */
-waitForElement("#confirmButton .helpButton").then(hb => hb.textContent = '⌚');
-waitForElement("#confirmButton #guessText").then(gt => {
-  console.debug('⌚Binding stopwatch to guess text');
-  DATA.stopwatch.start(time => {
-    gt.textContent = new Date(time).toISOString().substring(11,21);
-  });
-
-  gt.addEventListener('click', e => {
-    DATA.stopwatch.stop();
-    waitForElement('#nextRound .nextRoundText').then(nrt => {
-      nrt.innerHTML = `<strong>⌚${gt.textContent}❗</strong>`;
-      nrt.parentElement.addEventListener('click', e => {
-        DATA.stopwatch.start();
-      });
-    });
-  });
-});
-
-
-/**
- * wait for an element to exist (hoisted function declaration)
- */
-function waitForElement(selector) {
-  return new Promise(resolve => {
-    const existing = document.querySelector(selector);
-    if (existing) {
-      console.debug(`⌚Element found for selector: ${selector}`);
-      resolve(existing);
-    } else {
-      console.debug(`⌚Waiting for element with selector: ${selector}`);
-      new MutationObserver((mutations, observer) => {
-        const element = document.querySelector(selector);
-        if (element) {
-          console.debug(`⌚Element mutated for selector: ${selector}`);
-          observer.disconnect();
-          resolve(element);
-        }
-      }).observe(document.documentElement, {
-        childList: true,
-        subtree: true
-      });
-    }
-  });
-}
 
 /**
  * resources
@@ -130,38 +71,96 @@ const DATA = {
     }
   `,
 
-  // stopwatch object, holds the current time of the round
-  stopwatch: {
-    TICK_INTERVAL: 100, // tick interval in ms (0.1 seconds)
+};
 
-    depart: null, // start time of round as epoch ms
-    current: null, // current time of round as epoch ms
-    interval: null, // interval for stopwatch ticks
-    callback: null, // callback for stopwatch ticks
 
-    ticks: () => { // perform stopwatch ticks
-      DATA.stopwatch.current = Date.now();
-      if (DATA.stopwatch.callback) {
-        DATA.stopwatch.callback(DATA.stopwatch.current - DATA.stopwatch.depart);
-      }
-    },
+/**
+ * custom CSS and BANNER
+ */
+GM_addStyle(DATA.CUSTOM_CSS_STYLE);
 
-    start: (callback) => { // start the stopwatch, to tick every TICK_INTERVAL ms
-      console.debug('⌚Starting stopwatch');
-      if (callback) {
-        console.debug('⌚Setting stopwatch callback');
-        DATA.stopwatch.callback = callback;
-      }
-      DATA.stopwatch.depart = Date.now();
-      DATA.stopwatch.interval = setInterval(DATA.stopwatch.ticks, DATA.stopwatch.TICK_INTERVAL);
-    },
 
-    stop: () => { // stop the stopwatch, with last tick
-      console.debug('⌚Stopping stopwatch');
-      clearInterval(DATA.stopwatch.interval);
-      DATA.stopwatch.ticks();
-    },
+/**
+ * stopwatch object, holds the current time of the round
+ */
+const stopwatch = {
+  TICK_INTERVAL: 100, // tick interval in ms (0.1 seconds)
 
+  depart: null, // start time of round as epoch ms
+  current: null, // current time of round as epoch ms
+  interval: null, // interval for stopwatch ticks
+  callback: null, // callback for stopwatch ticks
+
+  ticks: () => { // perform stopwatch ticks
+    stopwatch.current = Date.now();
+    if (stopwatch.callback) {
+      stopwatch.callback(stopwatch.current - stopwatch.depart);
+    }
+  },
+
+  start: (callback) => { // start the stopwatch, to tick every TICK_INTERVAL ms
+    console.debug('⌚Starting stopwatch');
+    if (callback) {
+      console.debug('⌚Setting stopwatch callback');
+      stopwatch.callback = callback;
+    }
+    stopwatch.depart = Date.now();
+    stopwatch.interval = setInterval(stopwatch.ticks, stopwatch.TICK_INTERVAL);
+  },
+
+  stop: () => { // stop the stopwatch, with last tick
+    console.debug('⌚Stopping stopwatch');
+    clearInterval(stopwatch.interval);
+    stopwatch.ticks();
   },
 
 };
+
+
+/**
+ * integrating stopwatch
+ */
+waitForElement("#confirmButton .helpButton").then(hb => hb.textContent = '⌚');
+waitForElement("#confirmButton #guessText").then(gt => {
+  console.debug('⌚Binding stopwatch to guess text');
+  stopwatch.start(time => {
+    gt.textContent = new Date(time).toISOString().substring(11,21);
+  });
+
+  gt.addEventListener('click', e => {
+    stopwatch.stop();
+    waitForElement('#nextRound .nextRoundText').then(nrt => {
+      nrt.innerHTML = `<strong>⌚${gt.textContent}❗</strong>`;
+      nrt.parentElement.addEventListener('click', e => {
+        stopwatch.start();
+      });
+    });
+  });
+});
+
+
+/**
+ * wait for an element to exist (hoisted function declaration)
+ */
+function waitForElement(selector) {
+  return new Promise(resolve => {
+    const existing = document.querySelector(selector);
+    if (existing) {
+      console.debug(`⌚Element found for selector: ${selector}`);
+      resolve(existing);
+    } else {
+      console.debug(`⌚Waiting for element with selector: ${selector}`);
+      new MutationObserver((mutations, observer) => {
+        const element = document.querySelector(selector);
+        if (element) {
+          console.debug(`⌚Element mutated for selector: ${selector}`);
+          observer.disconnect();
+          resolve(element);
+        }
+      }).observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+    }
+  });
+}
