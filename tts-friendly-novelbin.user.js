@@ -4,7 +4,7 @@
 // @match       https://novelbin.com/b/my-master-knows-it-all/*
 // @run-at      document-idle
 // @grant       none
-// @version     1.0.3
+// @version     1.0.4
 // @author      -
 // @description 25/10/2025 10:22:21
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
@@ -51,8 +51,12 @@ waitForElement("#chr-content").then(x => {
   firstParagraph.textContent = firstParagraph.textContent.replace(/^\s*(.*_\d)\s*\1\s*/, '');
 
   document.querySelectorAll("#chr-content p").forEach(p => {
-    p.textContent = p.textContent.replace(/\bCao\b/g, 'Kao');
-    p.textContent = p.textContent.replace(/\bGu\b/g, 'Goo');
+    p.textContent = p.textContent
+      .replace(/\bCao\b/g, 'Kao')
+      .replace(/\bGu\b/g, 'Goo')
+      .replace(/\bgod\b/ig, 'divinity')
+      .replace(/\bgodly\b/ig, 'divine')
+    ;
   });
 });
 
