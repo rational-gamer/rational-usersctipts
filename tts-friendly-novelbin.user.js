@@ -4,7 +4,7 @@
 // @match       https://novelbin.com/b/my-master-knows-it-all/*
 // @run-at      document-idle
 // @grant       none
-// @version     1.0.6
+// @version     1.0.7
 // @author      -
 // @description 25/10/2025 10:22:21
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
@@ -39,7 +39,7 @@ function waitForElement(selector) {
 
 waitForElement("#chapter .chr-title span.chr-text").then(chapterTitle => {
   console.info(`found chapter title: '${chapterTitle.textContent}'`);
-  chapterTitle.textContent = chapterTitle.textContent.replace(/^\s*C(?:hapter)? ?(\d+) - [0-9 ]*(.*)_\d+\s*$/, 'Chapter $1 - $2')
+  chapterTitle.textContent = chapterTitle.textContent.replace(/^\s*C(?:hapter)? ?(\d+) - [0-9 -]*(.*)_?\d*\s*$/, 'Chapter $1 - $2')
 });
 
 waitForElement("#chr-content").then(x => {
@@ -48,7 +48,7 @@ waitForElement("#chr-content").then(x => {
 
   const firstParagraph = document.querySelector("#chr-content > p:first-child");
   console.info(`found first paragraph: '${firstParagraph.textContent}'`);
-  firstParagraph.textContent = firstParagraph.textContent.replace(/^\s*(.*_\d)\s*\1\s*/, '');
+  firstParagraph.textContent = firstParagraph.textContent.replace(/^\s*(.+_?\d*)\s*\1\s*/, '');
 
   document.querySelectorAll("#chr-content p").forEach(p => {
     p.textContent = p.textContent
