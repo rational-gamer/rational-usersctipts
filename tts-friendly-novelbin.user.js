@@ -4,7 +4,7 @@
 // @match       https://novelbin.com/b/my-master-knows-it-all/*
 // @run-at      document-idle
 // @grant       none
-// @version     1.0.9
+// @version     1.1.0
 // @author      -
 // @description 25/10/2025 10:22:21
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
@@ -76,6 +76,12 @@ waitForElement("#chr-content").then(x => {
       ;
     }
 
+    if (/lv/i.test(content)) {
+      content = content
+        .replace(/lv chaoqiong\b/gui, 'Ruo Chaoqiong')
+      ;
+    }
+
     if (/mr/i.test(content)) {
       content = content
         .replace(/mr\./gui, 'mister')
@@ -100,7 +106,7 @@ waitForElement("#chr-content").then(x => {
 
     } else if (/^\s*$/.test(content)) {
       paragraph.remove();
-      
+
     } else {
       paragraph.textContent = content;
       previousContent = content;
