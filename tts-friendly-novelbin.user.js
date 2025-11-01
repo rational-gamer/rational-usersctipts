@@ -4,7 +4,7 @@
 // @match       https://novelbin.com/b/my-master-knows-it-all/*
 // @run-at      document-idle
 // @grant       none
-// @version     1.0.8
+// @version     1.0.9
 // @author      -
 // @description 25/10/2025 10:22:21
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
@@ -50,15 +50,63 @@ waitForElement("#chr-content").then(x => {
   console.info(`found first paragraph: '${firstParagraph.textContent}'`);
   firstParagraph.textContent = firstParagraph.textContent.replace(/^\s*(.+_?\d*)\s*\1\s*/, '');
 
-  document.querySelectorAll("#chr-content p").forEach(p => {
-    p.textContent = p.textContent
-      .replace(/\bCao\b/g, 'Kao')
-      .replace(/\bGu\b/g, 'Goo')
-      .replace(/\bLv\b/ig, 'Lu')
-      .replace(/\bgod|goddess\b/ig, 'divinity')
-      .replace(/\bgods|goddesses\b/ig, 'divinities')
-      .replace(/\bgodly\b/ig, 'divine')
-    ;
+  let previousParagraph = null;
+  let previousContent = "";
+
+  document.querySelectorAll("#chr-content p").forEach(paragraph => {
+    let content = paragraph.textContent;
+
+    if (/god/i.test(content)) {
+      content = content
+        .replace(/god\b|goddess\b/gui, 'divinity')
+        .replace(/gods\b|goddesses\b/gui, 'divinities')
+        .replace(/godly\b/gui, 'divine')
+      ;
+    }
+
+    if (/cao/i.test(content)) {
+      content = content
+        .replace(/cao\b/gui, 'Kao')
+      ;
+    }
+
+    if (/gu/i.test(content)) {
+      content = content
+        .replace(/gu\b/gui, 'Goo')
+      ;
+    }
+
+    if (/mr/i.test(content)) {
+      content = content
+        .replace(/mr\./gui, 'mister')
+      ;
+    }
+
+    if (/hm/i.test(content)) {
+      content = content
+        .replace(/h+m+p+h+/gui, 'humpf')
+        .replace(/h+m+/gui, 'hmm')
+      ;
+    }
+
+    if (!/[^/ .]/.test(content)) {
+      content = '';
+    }
+
+    if (/\w$/.test(previousContent)) {
+      previousContent += " " + content;
+      previousParagraph.textContent = previousContent;
+      paragraph.remove();
+
+    } else if (/^\s*$/.test(content)) {
+      paragraph.remove();
+      
+    } else {
+      paragraph.textContent = content;
+      previousContent = content;
+      previousParagraph = paragraph;
+    }
+
   });
 });
 
