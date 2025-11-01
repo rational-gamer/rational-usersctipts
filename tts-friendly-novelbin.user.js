@@ -4,10 +4,12 @@
 // @match       https://novelbin.com/b/my-master-knows-it-all/*
 // @run-at      document-idle
 // @grant       none
-// @version     1.1.0.4
+// @version     1.1.1
 // @author      -
 // @description 25/10/2025 10:22:21
-// @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js?salt=v1.1.0.4
+// @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
+// @homepageURL https://github.com/rational-gamer/rational-usersctipts/blob/main/tts-friendly-novelbin.user.js
+// @supportURL  https://github.com/rational-gamer/rational-usersctipts
 // ==/UserScript==
 
 
@@ -40,8 +42,6 @@ function waitForElement(selector) {
 waitForElement("#chapter .chr-title span.chr-text").then(chapterTitle => {
   console.info(`found chapter title: '${chapterTitle.textContent}'`);
   chapterTitle.textContent = chapterTitle.textContent.replace(/^\s*C(?:hapter)? ?(\d+) - [0-9 -]*(.*?)_?\d*\s*$/, 'Chapter $1 - $2')
-
-  chapterTitle.textContent = "'huumf' 'pewf' 'hum' 'pewft' " + chapterTitle.textContent;
 });
 
 waitForElement("#chr-content").then(x => {
@@ -92,14 +92,14 @@ waitForElement("#chr-content").then(x => {
 
     if (/pf/i.test(content)) {
       content = content
-        .replace(/p+f+t*/gui, 'puufft')
+        .replace(/p+f+t*/gui, 'pewft')
       ;
     }
 
     if (/hm/i.test(content)) {
       content = content
         .replace(/h+m+p+h+/gui, 'huumf')
-        .replace(/h+m+/gui, 'humm')
+        .replace(/h+m+/gui, 'hum')
       ;
     }
 
