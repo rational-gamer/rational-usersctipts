@@ -4,7 +4,7 @@
 // @match       https://novelbin.com/b/my-master-knows-it-all/*
 // @run-at      document-idle
 // @grant       none
-// @version     1.1.0.1
+// @version     1.1.0.2
 // @author      -
 // @description 25/10/2025 10:22:21
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
@@ -41,7 +41,7 @@ waitForElement("#chapter .chr-title span.chr-text").then(chapterTitle => {
   console.info(`found chapter title: '${chapterTitle.textContent}'`);
   chapterTitle.textContent = chapterTitle.textContent.replace(/^\s*C(?:hapter)? ?(\d+) - [0-9 -]*(.*?)_?\d*\s*$/, 'Chapter $1 - $2')
 
-  chapterTitle.textContent = "huumf huumff huumffff puuf puuff puuffff hum humm hummmm puuft puufft puufffft " + chapterTitle.textContent;
+  chapterTitle.textContent = "huumf hewmf hewmff hewmffff pewf pewff pewffff heum heumm heummmm pewft pewfft pewfffft " + chapterTitle.textContent;
 });
 
 waitForElement("#chr-content").then(x => {
