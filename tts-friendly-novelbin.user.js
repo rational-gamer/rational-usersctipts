@@ -4,7 +4,7 @@
 // @match       https://novelbin.com/b/my-master-knows-it-all/*
 // @run-at      document-idle
 // @grant       none
-// @version     1.1.3
+// @version     1.1.4
 // @author      -
 // @description 25/10/2025 10:22:21
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
@@ -100,6 +100,12 @@ waitForElement("#chr-content").then(x => {
       content = content
         .replace(/h+m+p+h+\b/gui, 'huumf')
         .replace(/h+m+\b/gui, 'hum')
+      ;
+    }
+
+    if (/buddh/i.test(content)) {
+      content = content
+        .replace(/buddha?/gui, 'Dung')
       ;
     }
 
