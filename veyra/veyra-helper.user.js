@@ -4,7 +4,7 @@
 // @match       https://demonicscans.org/active_wave.php
 // @grant       GM_addStyle
 // @run-at      document-start
-// @version     0.0.1
+// @version     0.0.2
 // @author      rational-gamer
 // @description 2025-12-05 23:53:12
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/veyra/veyra-helper.user.js
@@ -38,6 +38,9 @@ function waitForElement(selector) {
     }
   });
 }
+
+// remove gate info
+waitForElement(".gate-info").then(gi => gi.remove());
 
 waitForElement(".monster-container").then(mc => {
 
