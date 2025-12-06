@@ -7,8 +7,8 @@
 // @version     1.1.10
 // @author      -
 // @description 25/10/2025 10:22:21
-// @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts-friendly-novelbin.user.js
-// @homepageURL https://github.com/rational-gamer/rational-usersctipts/blob/main/tts-friendly-novelbin.user.js
+// @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/tts/tts-friendly-novelbin.user.js
+// @homepageURL https://github.com/rational-gamer/rational-usersctipts/blob/main/tts/tts-friendly-novelbin.user.js
 // @supportURL  https://github.com/rational-gamer/rational-usersctipts
 // ==/UserScript==
 

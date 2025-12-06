@@ -7,7 +7,7 @@
 // @version     0.0.2
 // @author      rational-gamer
 // @description 16/08/2025 11:31:25
-// @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/panorama-banner.user.js
+// @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/openguessr/panorama-banner.user.js
 // ==/UserScript==
 
 console.log('🧭 userscript panorama-banner loaded at ' + window.location);
@@ -20,10 +20,10 @@ console.log('🧭 userscript panorama-banner loaded at ' + window.location);
 const RAW = {
 
   // palestinian flag (horizontal stretcheable bands)
-  PALESTINIAN_FLAG_SVG : 'https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/ps-flag.svg',
+  PALESTINIAN_FLAG_SVG : 'https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/openguessr/ps-flag.svg',
 
   // free palestine banner at psg stands, if only they wont have been blamed for that :-(
-  FREE_PALESTINE_BANNER_WEBP: 'https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/fp-banner.webp',
+  FREE_PALESTINE_BANNER_WEBP: 'https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/openguessr/fp-banner.webp',
 
 };
 
