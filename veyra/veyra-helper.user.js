@@ -3,8 +3,8 @@
 // @namespace   3rd maths
 // @match       https://demonicscans.org/active_wave.php
 // @grant       GM_addStyle
-// @run-at      document-start
-// @version     0.0.2
+// @run-at      document-end
+// @version     0.0.3
 // @author      rational-gamer
 // @description 2025-12-05 23:53:12
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/veyra/veyra-helper.user.js
@@ -38,6 +38,10 @@ function waitForElement(selector) {
     }
   });
 }
+
+/**
+ * ∮𝐄∙d𝓁 = -∬𝜕𝐁/𝜕t∙d𝒮
+ */
 
 // remove gate info
 waitForElement(".gate-info").then(gi => gi.remove());
