@@ -4,7 +4,7 @@
 // @match       https://demonicscans.org/active_wave.php
 // @grant       GM_addStyle
 // @run-at      document-end
-// @version     0.0.3
+// @version     0.0.4
 // @author      rational-gamer
 // @description 2025-12-05 23:53:12
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/veyra/veyra-helper.user.js
@@ -54,7 +54,7 @@ waitForElement(".monster-container").then(mc => {
   // sort monsters by HP ascending
   mc.querySelectorAll(":scope > .monster-card").forEach(m => {
     const statValue = m.querySelector(".stat-value").textContent.replace(/[^\d\/]/g,'');
-    const continueBtn = m.querySelector(".continue-btn") ? -1 : +1;
+    const continueBtn = m.querySelector(".continue-btn, .monster-img[src='images/monsters/monster_693c56c5a019f0.86324230.webp']") ? -1 : +1;
     m.style.order = continueBtn * parseInt(statValue);
   });
 });
