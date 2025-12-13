@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name        veyra-helper
 // @namespace   3rd maths
-// @match       https://demonicscans.org/active_wave.php
+// @match       https://demonicscans.org/*
 // @grant       GM_addStyle
 // @run-at      document-end
-// @version     0.0.5
+// @version     0.0.6
 // @author      rational-gamer
 // @description 2025-12-05 23:53:12
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/veyra/veyra-helper.user.js
