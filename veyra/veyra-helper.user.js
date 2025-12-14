@@ -4,7 +4,7 @@
 // @match       https://demonicscans.org/*
 // @grant       GM_addStyle
 // @run-at      document-end
-// @version     0.0.6
+// @version     0.0.7
 // @author      rational-gamer
 // @description 2025-12-05 23:53:12
 // @downloadURL https://raw.githubusercontent.com/rational-gamer/rational-usersctipts/refs/heads/main/veyra/veyra-helper.user.js
@@ -43,19 +43,31 @@ function waitForElement(selector) {
  * ∮𝐄∙d𝓁 = -∬𝜕𝐁/𝜕t∙d𝒮
  */
 
-// remove gate info
-waitForElement(".gate-info").then(gi => gi.remove());
-waitForElement(".ny-gems-shop").then(ngs => ngs.remove());
+// at game dashboard
+if (window.location.pathname === '/game_dash.php') {
+  // remove gems shop
+  waitForElement(".ny-gems-shop").then(ngs => ngs.remove());
 
-waitForElement(".monster-container").then(mc => {
+  // add quick links to events
+  waitForElement(".event-card[aria-label='Gates']").then(ec => ec.setAttribute('href', '/active_wave.php?gate=3&wave=5'));
+  waitForElement(".event-card[aria-label='Live PvP — The Awakening']").then(ec => ec.setAttribute('href', '/adventurers_guild.php'));
+  waitForElement(".event-card[aria-label='Live Events']").then(ec => ec.setAttribute('href', '/active_wave.php?event=4&wave=2'));
+}
 
-  // remove death timers
-  mc.querySelectorAll(".death-timer").forEach(dt => dt.remove());
+if (window.location.pathname === '/active_wave.php') {
+  // remove gate info
+  waitForElement(".gate-info").then(gi => gi.remove());
 
-  // sort monsters by HP ascending
-  mc.querySelectorAll(":scope > .monster-card").forEach(m => {
-    const statValue = m.querySelector(".stat-value").textContent.replace(/[^\d\/]/g,'');
-    const continueBtn = m.querySelector(".continue-btn, .monster-img[src='images/monsters/monster_693c56c5a019f0.86324230.webp']") ? -1 : +1;
-    m.style.order = continueBtn * parseInt(statValue);
+  waitForElement(".monster-container").then(mc => {
+
+    // remove death timers
+    mc.querySelectorAll(".death-timer").forEach(dt => dt.remove());
+
+    // sort monsters by HP ascending
+    mc.querySelectorAll(":scope > .monster-card").forEach(m => {
+      const statValue = m.querySelector(".stat-value").textContent.replace(/[^\d\/]/g,'');
+      const continueBtn = m.querySelector(".continue-btn, .monster-img[src='images/monsters/monster_693c56c5a019f0.86324230.webp']") ? -1 : +1;
+      m.style.order = continueBtn * parseInt(statValue);
+    });
   });
-});
+}
